@@ -57,7 +57,13 @@ void VideoPlayer::stopVideo() {
 }
 
 void VideoPlayer::playRandomVideo() {
-  std::cout << "playRandomVideo needs implementation" << std::endl;
+  std::vector<Video> videoVector = mVideoLibrary.getVideos();
+  if (!videoVector.size()) {
+    std::cout << "No videos available" << std::endl;
+  } else {
+    int randomIndex = rand() % videoVector.size();
+    playVideo(videoVector[randomIndex].getVideoId());
+  }
 }
 
 void VideoPlayer::pauseVideo() {
