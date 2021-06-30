@@ -1,8 +1,9 @@
 #pragma once
 
 #include <string>
-
+#include <unordered_map>
 #include "videolibrary.h"
+#include "videoplaylist.h"
 
 /**
  * A class used to represent a Video Player.
@@ -13,6 +14,7 @@ class VideoPlayer {
   const Video * playingVideo;
   bool isPaused;
   void displayFormattedVideo(Video video);
+  std::unordered_map<std::string, VideoPlaylist> mPlaylists;
 
  public:
   VideoPlayer() = default;

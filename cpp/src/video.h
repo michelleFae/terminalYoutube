@@ -2,6 +2,8 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+
 
 /**
  * A class used to represent a video.

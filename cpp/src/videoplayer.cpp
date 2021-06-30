@@ -1,5 +1,5 @@
 #include "videoplayer.h"
-
+#include "videoplaylist.cpp"
 #include <iostream>
 
 // helper function
@@ -17,6 +17,10 @@ void VideoPlayer::displayFormattedVideo (Video video) {
   }
   std::cout << "]";
 }
+
+// helper function
+
+
 
 void VideoPlayer::numberOfVideos() {
   std::cout << mVideoLibrary.getVideos().size() << " videos in the library"
@@ -123,7 +127,15 @@ void VideoPlayer::showPlaying() {
 }
 
 void VideoPlayer::createPlaylist(const std::string& playlistName) {
-  std::cout << "createPlaylist needs implementation" << std::endl;
+  // store the playlist name as lower case
+  const std::string& playlistNameLowerCase = playlistName;
+  if (mPlaylists.find(playlistNameLowerCase) == mPlaylists.end()) {
+    VideoPlaylist playlistObj = VideoPlaylist(playlistName);
+    mPlaylists.emplace(playlistNameLowerCase, playlistObj);
+    std::cout << "Successfully created new playlist: " << playlistName << std::endl;
+  } else {
+    std::cout << "Cannot create playlist: A playlist with the same name already exists" << std::endl;
+  }
 }
 
 void VideoPlayer::addVideoToPlaylist(const std::string& playlistName,

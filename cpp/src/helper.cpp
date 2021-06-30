@@ -4,6 +4,15 @@
 #include <sstream>
 #include <vector>
 
+#include <algorithm>
+#include <string>
+
+
+#include <locale>
+
+
+using std::transform; using std::toupper;
+
 std::string trim(std::string toTrim) {
   size_t trimPos = toTrim.find_first_not_of(" \t");
   toTrim.erase(0, trimPos);
@@ -23,3 +32,23 @@ std::vector<std::string> splitlines(std::string output) {
   }
   return commandOutput;
 }
+
+
+// const std::string& toLowercase(const std::string s)
+// {
+//     transform(s.begin(), s.end(), s.begin(),
+//                    [](unsigned char c){ return tolower(c); });
+//     return &s;
+// }
+
+
+// std::string toLowercase(std::string& str)
+// {
+// 	std::locale settings;
+// 	std::string converted;
+
+// 	for(short i = 0; i < str.size(); ++i)
+// 		converted += (std::toupper(str[i], settings));
+	
+// 	return converted;
+// }
