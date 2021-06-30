@@ -11,6 +11,7 @@ class VideoPlayer {
  private:
   VideoLibrary mVideoLibrary;
   const Video * playingVideo;
+  bool isPaused;
 
  public:
   VideoPlayer() = default;

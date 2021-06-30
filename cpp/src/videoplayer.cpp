@@ -42,6 +42,7 @@ void VideoPlayer::playVideo(const std::string& videoId) {
   }
 
   playingVideo = mVideoLibrary.getVideo(videoId);
+  isPaused = false;
   std::cout << "Playing video: " << playingVideo->getTitle() << std::endl;
 }
 
@@ -49,6 +50,7 @@ void VideoPlayer::stopVideo() {
   // check if video is playing 
   if (playingVideo) {
     // stop playing video
+    isPaused = false;
     std::cout << "Stopping video: " << playingVideo->getTitle() << std::endl;
   } else {
     std::cout << "Cannot stop video: No video is currently playing" << std::endl;
@@ -67,7 +69,19 @@ void VideoPlayer::playRandomVideo() {
 }
 
 void VideoPlayer::pauseVideo() {
-  std::cout << "pauseVideo needs implementation" << std::endl;
+  // if not playing a video
+  if (!playingVideo) {
+    std::cout << "Cannot pause video: No video is currently playing" << std::endl;
+   return; 
+  }
+
+  // if already playing a video
+  if (isPaused) {
+    std::cout << "Video already paused: " << playingVideo->getTitle() << std::endl;
+  } else {
+    isPaused = true;
+    std::cout << "Pausing video: " << playingVideo->getTitle() << std::endl;
+  }
 }
 
 void VideoPlayer::continueVideo() {
