@@ -85,7 +85,19 @@ void VideoPlayer::pauseVideo() {
 }
 
 void VideoPlayer::continueVideo() {
-  std::cout << "continueVideo needs implementation" << std::endl;
+  // if not playing a video
+  if (!playingVideo) {
+    std::cout << "Cannot continue video: No video is currently playing" << std::endl;
+    return; 
+  }
+
+  // if already playing a video
+  if (!isPaused) {
+    std::cout << "Cannot continue video: Video is not paused" << playingVideo->getTitle() << std::endl;
+  } else {
+    isPaused = false;
+    std::cout << "Continuing video: " << playingVideo->getTitle() << std::endl;
+  }
 }
 
 void VideoPlayer::showPlaying() {
