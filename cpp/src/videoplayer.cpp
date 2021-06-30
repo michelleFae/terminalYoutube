@@ -9,11 +9,12 @@ void VideoPlayer::numberOfVideos() {
 }
 
 void VideoPlayer::showAllVideos() {
+    std::cout << "Here's a list of all available videos:" << std::endl;
     std::vector<Video> videoVector = mVideoLibrary.getVideos();
     std::sort(videoVector.begin(), videoVector.end());
     for (auto video : videoVector)
     {
-        std::cout << video.getTitle() 
+        std::cout << '\t' << video.getTitle() 
         << " (" << video.getVideoId() << ") [" ;
 
         int numTags = video.getTags().size();
@@ -50,8 +51,9 @@ void VideoPlayer::stopVideo() {
     // stop playing video
     std::cout << "Stopping video: " << playingVideo->getTitle() << std::endl;
   } else {
-    std::cout << "Cannot play video: Video does not exist" << std::endl;
+    std::cout << "Cannot stop video: No video is currently playing" << std::endl;
   }
+  playingVideo = nullptr;
 }
 
 void VideoPlayer::playRandomVideo() {
