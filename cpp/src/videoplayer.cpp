@@ -2,6 +2,21 @@
 
 #include <iostream>
 
+// helper function
+void VideoPlayer::displayFormattedVideo (Video video) {
+  std::cout << video.getTitle() 
+  << " (" << video.getVideoId() << ") [" ;
+
+  int numTags = video.getTags().size();
+  for (auto tag : video.getTags()) {
+    std::cout << tag;
+    if (numTags > 1) {
+      std::cout << " ";
+    }
+    numTags--;
+  }
+  std::cout << "]";
+}
 
 void VideoPlayer::numberOfVideos() {
   std::cout << mVideoLibrary.getVideos().size() << " videos in the library"
@@ -14,18 +29,9 @@ void VideoPlayer::showAllVideos() {
     std::sort(videoVector.begin(), videoVector.end());
     for (auto video : videoVector)
     {
-        std::cout << '\t' << video.getTitle() 
-        << " (" << video.getVideoId() << ") [" ;
-
-        int numTags = video.getTags().size();
-        for (auto tag : video.getTags()) {
-          std::cout << tag;
-          if (numTags > 1) {
-            std::cout << " ";
-          }
-          numTags--;
-        }
-        std::cout << "]" << std::endl;
+        std::cout << '\t';
+        displayFormattedVideo(video);
+        std::cout << std::endl;
     }
 }
 
@@ -101,7 +107,19 @@ void VideoPlayer::continueVideo() {
 }
 
 void VideoPlayer::showPlaying() {
-  std::cout << "showPlaying needs implementation" << std::endl;
+  if (!playingVideo) {
+    std::cout << "No video is currently playing" << std::endl;
+    return; 
+  }
+
+  std::cout << "Currently playing: ";
+  displayFormattedVideo(*playingVideo);
+  
+  if (isPaused) {
+    std::cout << " - PAUSED";
+  }
+  
+  std::cout << std::endl;
 }
 
 void VideoPlayer::createPlaylist(const std::string& playlistName) {

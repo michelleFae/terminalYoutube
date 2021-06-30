@@ -12,6 +12,7 @@ class VideoPlayer {
   VideoLibrary mVideoLibrary;
   const Video * playingVideo;
   bool isPaused;
+  void displayFormattedVideo(Video video);
 
  public:
   VideoPlayer() = default;
