@@ -1,6 +1,10 @@
 #include "videoplaylist.h"
 
-VideoPlaylist::VideoPlaylist(std::string& playlistName):playlistName(std::move(playlistName)) {
+// VideoPlaylist::VideoPlaylist(std::string&& playlistName):playlistName(std::move(playlistName)) {
+// }
+
+VideoPlaylist::VideoPlaylist(const std::string& playlistName) {
+    this->playlistName = playlistName;
 }
 
 std::vector<Video> VideoPlaylist::getVideos() const {

@@ -15,7 +15,7 @@ class VideoPlaylist {
   
 
  public:
-  VideoPlaylist(std::string& playlistName);
+  VideoPlaylist(const std::string& playlistName);
   std::vector<Video> getVideos() const;
   void addVideo(Video video);
   const std::string& removeVideo(const std::string& videoId);

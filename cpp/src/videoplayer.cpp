@@ -18,10 +18,6 @@ void VideoPlayer::displayFormattedVideo (Video video) {
   std::cout << "]";
 }
 
-// helper function
-
-
-
 void VideoPlayer::numberOfVideos() {
   std::cout << mVideoLibrary.getVideos().size() << " videos in the library"
             << std::endl;
@@ -127,15 +123,14 @@ void VideoPlayer::showPlaying() {
 }
 
 void VideoPlayer::createPlaylist(const std::string& playlistName) {
-  // store the playlist name as lower case
-  const std::string& playlistNameLowerCase = playlistName;
-  if (mPlaylists.find(playlistNameLowerCase) == mPlaylists.end()) {
-    VideoPlaylist playlistObj = VideoPlaylist(playlistName);
-    mPlaylists.emplace(playlistNameLowerCase, playlistObj);
+  if (mPlaylists.find(playlistName) == mPlaylists.end()) {
+    VideoPlaylist playlistObj(playlistName);
+    mPlaylists.emplace(playlistName, playlistObj);
     std::cout << "Successfully created new playlist: " << playlistName << std::endl;
   } else {
-    std::cout << "Cannot create playlist: A playlist with the same name already exists" << std::endl;
-  }
+  std::cout << "Cannot create playlist: A playlist with the same name already exists" << std::endl;
+}
+  
 }
 
 void VideoPlayer::addVideoToPlaylist(const std::string& playlistName,
