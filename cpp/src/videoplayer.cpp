@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+
 void VideoPlayer::numberOfVideos() {
   std::cout << mVideoLibrary.getVideos().size() << " videos in the library"
             << std::endl;
@@ -27,22 +28,20 @@ void VideoPlayer::showAllVideos() {
     }
 }
 
-
-  // auto iter = mVideoLibrary.getVideos().begin();
-  // for ( ; iter !=  mVideoLibrary.getVideos().end(); iter++) {
-  //     std::cout << (*iter).getTitle() << " ( " 
-  //     << (*iter).getVideoId() << " ) [" ;
-
-  //      for(int i = 0; i < (*iter).getTags().size(); i++) { // this causes an issue idk why
-  //       //std::cout << (*iter).getTags()[i];
-  //     } 
-
-  //      //std::cout << ']' << std::endl;
-  // }
-// }
-
 void VideoPlayer::playVideo(const std::string& videoId) {
-  std::cout << "playVideo needs implementation" << std::endl;
+  // check if video exists
+  if (!mVideoLibrary.getVideo(videoId)) {
+    std::cout << "Cannot play video: Video does not exist" << std::endl;
+    return;
+  }
+
+  if (playingVideo) {
+    // stop playing video
+    std::cout << "Stopping video: " << playingVideo->getTitle() << std::endl;
+  }
+
+  playingVideo = mVideoLibrary.getVideo(videoId);
+  std::cout << "Playing video: " << playingVideo->getTitle() << std::endl;
 }
 
 void VideoPlayer::stopVideo() {

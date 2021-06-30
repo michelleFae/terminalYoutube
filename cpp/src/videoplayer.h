@@ -10,6 +10,7 @@
 class VideoPlayer {
  private:
   VideoLibrary mVideoLibrary;
+  const Video * playingVideo;
 
  public:
   VideoPlayer() = default;
