@@ -37,7 +37,7 @@ void VideoPlayer::playVideo(const std::string& videoId) {
 
   if (playingVideo) {
     // stop playing video
-    std::cout << "Stopping video: " << playingVideo->getTitle() << std::endl;
+    stopVideo();
   }
 
   playingVideo = mVideoLibrary.getVideo(videoId);
@@ -45,7 +45,13 @@ void VideoPlayer::playVideo(const std::string& videoId) {
 }
 
 void VideoPlayer::stopVideo() {
-  std::cout << "stopVideo needs implementation" << std::endl;
+  // check if video is playing 
+  if (playingVideo) {
+    // stop playing video
+    std::cout << "Stopping video: " << playingVideo->getTitle() << std::endl;
+  } else {
+    std::cout << "Cannot play video: Video does not exist" << std::endl;
+  }
 }
 
 void VideoPlayer::playRandomVideo() {
