@@ -8,8 +8,38 @@ void VideoPlayer::numberOfVideos() {
 }
 
 void VideoPlayer::showAllVideos() {
-  std::cout << "showAllVideos needs implementation" << std::endl;
+    std::vector<Video> videoVector = mVideoLibrary.getVideos();
+    std::sort(videoVector.begin(), videoVector.end());
+    for (auto video : videoVector)
+    {
+        std::cout << video.getTitle() 
+        << " (" << video.getVideoId() << ") [" ;
+
+        int numTags = video.getTags().size();
+        for (auto tag : video.getTags()) {
+          std::cout << tag;
+          if (numTags > 1) {
+            std::cout << " ";
+          }
+          numTags--;
+        }
+        std::cout << "]" << std::endl;
+    }
 }
+
+
+  // auto iter = mVideoLibrary.getVideos().begin();
+  // for ( ; iter !=  mVideoLibrary.getVideos().end(); iter++) {
+  //     std::cout << (*iter).getTitle() << " ( " 
+  //     << (*iter).getVideoId() << " ) [" ;
+
+  //      for(int i = 0; i < (*iter).getTags().size(); i++) { // this causes an issue idk why
+  //       //std::cout << (*iter).getTags()[i];
+  //     } 
+
+  //      //std::cout << ']' << std::endl;
+  // }
+// }
 
 void VideoPlayer::playVideo(const std::string& videoId) {
   std::cout << "playVideo needs implementation" << std::endl;

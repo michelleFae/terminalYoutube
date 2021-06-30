@@ -24,4 +24,12 @@ class Video {
 
   // Returns a readonly collection of the tags of the video.
   const std::vector<std::string>& getTags() const;
+
+  // overload the operator< for sorting
+  bool operator<(const Video &video) const {
+    if (mTitle != video.mTitle) {
+        return mTitle < video.getTitle();
+    }
+    return mTitle < video.getTitle();
+}
 };
