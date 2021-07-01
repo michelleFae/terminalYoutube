@@ -1,6 +1,7 @@
 #include "videoplayer.h"
 #include "videoplaylist.cpp"
 #include <iostream>
+#include <locale>
 
 // helper function
 void VideoPlayer::displayFormattedVideo (Video video) {
@@ -17,6 +18,20 @@ void VideoPlayer::displayFormattedVideo (Video video) {
   }
   std::cout << "]";
 }
+
+std::string toLower(const std::string& s)
+{
+    std::string result;
+
+    std::locale loc;
+    for (unsigned int i = 0; i < s.length(); ++i)
+    {
+        result += std::tolower(s.at(i), loc);
+    }
+   
+    return result;
+}
+
 
 void VideoPlayer::numberOfVideos() {
   std::cout << mVideoLibrary.getVideos().size() << " videos in the library"
@@ -122,10 +137,12 @@ void VideoPlayer::showPlaying() {
   std::cout << std::endl;
 }
 
+
+
 void VideoPlayer::createPlaylist(const std::string& playlistName) {
-  if (mPlaylists.find(playlistName) == mPlaylists.end()) {
+  if (mPlaylists.find(toLower(playlistName)) == mPlaylists.end()) {
     VideoPlaylist playlistObj(playlistName);
-    mPlaylists.emplace(playlistName, playlistObj);
+    mPlaylists.emplace(toLower(playlistName), playlistObj);
     std::cout << "Successfully created new playlist: " << playlistName << std::endl;
   } else {
   std::cout << "Cannot create playlist: A playlist with the same name already exists" << std::endl;

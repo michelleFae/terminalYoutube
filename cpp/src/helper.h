@@ -6,4 +6,3 @@ std::string trim(std::string s);
 
 std::vector<std::string> splitlines(std::string output);
 
-// std::string toLowercase(std::string& str);
