@@ -1,8 +1,5 @@
 #include "videoplaylist.h"
 
-// VideoPlaylist::VideoPlaylist(std::string&& playlistName):playlistName(std::move(playlistName)) {
-// }
-
 VideoPlaylist::VideoPlaylist(const std::string& playlistName) {
     this->playlistName = playlistName;
 }
@@ -24,9 +21,20 @@ const Video* VideoPlaylist::getVideo(const std::string& videoId) const {
   }
 }
 
+bool VideoPlaylist::containsVideo(const std::string& videoId) {
+  std::cout << this->mVideos.size() << std::endl;
+  if (this->mVideos.find(videoId) == this->mVideos.end()) {
+        return false;
+  }
+  return true;
+}
 
-void VideoPlaylist::addVideo(Video video) {
+void VideoPlaylist::addVideo(const Video &video) {
+  std::cout << this->mVideos.size() << std::endl;
   mVideos.emplace(video.getVideoId() , std::move(video));
+  std::cout << this->mVideos.size() << " should be 1 more" << std::endl;
+  std::cout << containsVideo(video.getVideoId())<< std::endl;
+  std::cout << "Added video to " << playlistName << ": " << video.getTitle() << std::endl;
 }
 
 const std::string& VideoPlaylist::removeVideo(const std::string& videoId) {

@@ -17,10 +17,11 @@ class VideoPlaylist {
  public:
   VideoPlaylist(const std::string& playlistName);
   std::vector<Video> getVideos() const;
-  void addVideo(Video video);
+  void addVideo(const Video & video);
   const std::string& removeVideo(const std::string& videoId);
   void removeAllVideos();
   void deletePlaylist();
+  bool containsVideo(const std::string& videoId);
   const Video *getVideo(const std::string& videoId) const;
   void setPlaylistName(const std::string& playlistName);
 };

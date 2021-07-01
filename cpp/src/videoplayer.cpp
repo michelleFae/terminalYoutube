@@ -146,13 +146,31 @@ void VideoPlayer::createPlaylist(const std::string& playlistName) {
     std::cout << "Successfully created new playlist: " << playlistName << std::endl;
   } else {
   std::cout << "Cannot create playlist: A playlist with the same name already exists" << std::endl;
-}
-  
+  }
 }
 
 void VideoPlayer::addVideoToPlaylist(const std::string& playlistName,
                                      const std::string& videoId) {
-  std::cout << "addVideoToPlaylist needs implementation" << std::endl;
+  // if playlist exists
+  if (mPlaylists.find(toLower(playlistName)) != mPlaylists.end()) {
+    if (!mVideoLibrary.getVideo(videoId)) {
+      std::cout << "Cannot add video to " << playlistName 
+      << ": Video does not exist" << std::endl;
+      return;
+    }
+    VideoPlaylist myPlaylist = mPlaylists.at(toLower(playlistName));
+    // if video already in playlist
+    if (myPlaylist.containsVideo(videoId)) {
+      std::cout << "Cannot add video to " << playlistName 
+      << ": Video already added" << std::endl;
+    } else {
+      myPlaylist.addVideo(*mVideoLibrary.getVideo(videoId));
+    }
+  } else {
+     std::cout << "Cannot add video to " << playlistName 
+      << ": Playlist does not exist" << std::endl;
+  }
+
 }
 
 void VideoPlayer::showAllPlaylists() {
