@@ -22,7 +22,6 @@ const Video* VideoPlaylist::getVideo(const std::string& videoId) const {
 }
 
 bool VideoPlaylist::containsVideo(const std::string& videoId) {
-  std::cout << this->mVideos.size() << std::endl;
   if (this->mVideos.find(videoId) == this->mVideos.end()) {
         return false;
   }
@@ -30,9 +29,7 @@ bool VideoPlaylist::containsVideo(const std::string& videoId) {
 }
 
 void VideoPlaylist::addVideo(const Video &video) {
-  std::cout << this->mVideos.size() << std::endl;
   mVideos.emplace(video.getVideoId() , std::move(video));
-  std::cout << this->mVideos.size() << " should be 1 more" << std::endl;
   std::cout << containsVideo(video.getVideoId())<< std::endl;
   std::cout << "Added video to " << playlistName << ": " << video.getTitle() << std::endl;
 }
